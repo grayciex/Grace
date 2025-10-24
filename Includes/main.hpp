@@ -2,7 +2,8 @@
 #define MAIN_H
 
 #include <CTRPluginFramework.hpp>
-#include "Helpers.hpp"
+#include "Game.hpp"
+#include "Plugin.hpp"
 #include "Unicode.h"
 
 namespace CTRPluginFramework

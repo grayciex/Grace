@@ -14,7 +14,7 @@ PLGINFO 	:= 	CTRPluginFramework.plgInfo
 
 BUILD		:= 	Build
 INCLUDES	:= 	Includes
-SOURCES 	:= 	Sources
+SOURCES 	:= 	Sources Sources/Game Sources/Plugin
 
 EMUDIR		:=	C:/Users/$(USERNAME)/AppData/Roaming/Azahar
 
@@ -80,7 +80,7 @@ cp:
 	@cp $(OUTPUT).3gx $(EMUDIR)/sdmc/luma/plugins/default.3gx
 	@echo copied 3gx to emulator plugin directory
 
-re: clean all cp
+re: clean all
 
 #---------------------------------------------------------------------------------
 

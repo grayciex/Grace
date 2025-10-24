@@ -1,6 +1,7 @@
 #include <3ds.h>
 #include "csvc.h"
-#include <CTRPluginFramework.hpp>
+
+#include "main.hpp"
 
 #include <vector>
 
@@ -68,11 +69,18 @@ exit:
         ToggleTouchscreenForceOn();
     }
 
-    int     main(void)
+    void CommonMenu(PluginMenu &menu) {
+        menu += new MenuFolder("Analyze", "", {
+            new MenuEntry("Memory Viewer", MemoryViewer, MemoryViewer_Menu),
+        });
+    }
+
+    int main(void)
     {
         PluginMenu *menu = new PluginMenu("Grace", version_major, version_minor, version_revision, about);
         menu->SynchronizeWithFrame(true);
         menu->ShowWelcomeMessage(false);
+        CommonMenu(*menu);
         menu->Run();
         delete menu;
         return (0);
