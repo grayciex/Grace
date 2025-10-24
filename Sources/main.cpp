@@ -6,8 +6,13 @@
 
 namespace CTRPluginFramework
 {
+    const int version_major = 0;
+    const int version_minor = 0;
+    const int version_revision = 0;
+    const std::string about = Utils::Format("Grayscale %d.%d.%d(%s %s)", version_major, version_minor, version_revision, __DATE__, __TIME__);
+
     // This patch the NFC disabling the touchscreen when scanning an amiibo, which prevents ctrpf to be used
-    static void    ToggleTouchscreenForceOn(void)
+    static void ToggleTouchscreenForceOn(void)
     {
         static u32 original = 0;
         static u32 *patchAddress = nullptr;
@@ -53,53 +58,23 @@ exit:
         svcCloseHandle(processHandle);
     }
 
-    // This function is called before main and before the game starts
-    // Useful to do code edits safely
-    void    PatchProcess(FwkSettings &settings)
+    void PatchProcess(FwkSettings &settings)
     {
         ToggleTouchscreenForceOn();
     }
 
-    // This function is called when the process exits
-    // Useful to save settings, undo patchs or clean up things
-    void    OnProcessExit(void)
+    void OnProcessExit(void)
     {
         ToggleTouchscreenForceOn();
-    }
-
-    void    InitMenu(PluginMenu &menu)
-    {
-        // Create your entries here, or elsewhere
-        // You can create your entries whenever/wherever you feel like it
-        
-        // Example entry
-        /*menu += new MenuEntry("Test", nullptr, [](MenuEntry *entry)
-        {
-            std::string body("What's the answer ?\n");
-
-            body += std::to_string(42);
-
-            MessageBox("UA", body)();
-        });*/
     }
 
     int     main(void)
     {
-        PluginMenu *menu = new PluginMenu("Action Replay", 0, 8, 0,
-                                            "A blank template plugin.\nGives you access to the ActionReplay and others tools.");
-
-        // Synnchronize the menu with frame event
+        PluginMenu *menu = new PluginMenu("Grace", version_major, version_minor, version_revision, about);
         menu->SynchronizeWithFrame(true);
-
-        // Init our menu entries & folders
-        InitMenu(*menu);
-
-        // Launch menu and mainloop
+        menu->ShowWelcomeMessage(false);
         menu->Run();
-
         delete menu;
-
-        // Exit plugin
         return (0);
     }
 }
