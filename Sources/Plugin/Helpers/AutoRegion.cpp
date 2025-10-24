@@ -1,4 +1,4 @@
-#include "Helpers/AutoRegion.hpp"
+#include "Plugin/Helpers/AutoRegion.hpp"
 
 
 namespace CTRPluginFramework

@@ -1,5 +1,5 @@
 #include <CTRPluginFramework/Menu/PluginMenu.hpp>
-#include "Helpers/QuickMenu.hpp"
+#include "Plugin/Helpers/QuickMenu.hpp"
 #include <algorithm>
 
 namespace CTRPluginFramework

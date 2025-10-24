@@ -1,4 +1,4 @@
-#include "Helpers/HoldKey.hpp"
+#include "Plugin/Helpers/HoldKey.hpp"
 
 namespace CTRPluginFramework
 {

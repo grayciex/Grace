@@ -1,13 +1,13 @@
 #ifndef HELPERS_HPP
 #define HELPERS_HPP
 
-#include "Helpers/AutoRegion.hpp"
-#include "Helpers/HoldKey.hpp"
-#include "Helpers/KeySequence.hpp"
-#include "Helpers/MenuEntryHelpers.hpp"
-#include "Helpers/OSDManager.hpp"
-#include "Helpers/QuickMenu.hpp"
-#include "Helpers/Strings.hpp"
-#include "Helpers/Wrappers.hpp"
+#include "Plugin/Helpers/AutoRegion.hpp"
+#include "Plugin/Helpers/HoldKey.hpp"
+#include "Plugin/Helpers/KeySequence.hpp"
+#include "Plugin/Helpers/MenuEntryHelpers.hpp"
+#include "Plugin/Helpers/OSDManager.hpp"
+#include "Plugin/Helpers/QuickMenu.hpp"
+#include "Plugin/Helpers/Strings.hpp"
+#include "Plugin/Helpers/Wrappers.hpp"
 
 #endif
