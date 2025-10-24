@@ -16,6 +16,8 @@ BUILD		:= 	Build
 INCLUDES	:= 	Includes
 SOURCES 	:= 	Sources
 
+EMUDIR		:=	C:/Users/$(USERNAME)/AppData/Roaming/Azahar
+
 #---------------------------------------------------------------------------------
 # options for code generation
 #---------------------------------------------------------------------------------
@@ -74,7 +76,11 @@ clean:
 	@echo clean ... 
 	@rm -fr $(BUILD) $(OUTPUT).3gx $(OUTPUT).elf
 
-re: clean all
+cp:
+	@cp $(OUTPUT).3gx $(EMUDIR)/sdmc/luma/plugins/default.3gx
+	@echo copied 3gx to emulator plugin directory
+
+re: clean all cp
 
 #---------------------------------------------------------------------------------
 
