@@ -9,5 +9,6 @@
 namespace CTRPluginFramework
 {
     using StringVector = std::vector<std::string>;
+    struct U32_NAME_VALUE {const char *name; const u32 value;};
 }
 #endif

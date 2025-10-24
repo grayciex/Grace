@@ -80,7 +80,13 @@ exit:
         PluginMenu *menu = new PluginMenu("Grace", version_major, version_minor, version_revision, about);
         menu->SynchronizeWithFrame(true);
         menu->ShowWelcomeMessage(false);
+        switch (Process::GetTitleID()) {
+            case 0x0004000000155100:
+                YW2::AppendMenu(*menu);
+                break;
+        }
         CommonMenu(*menu);
+        OSD::Notify(Color::Red << "P" << Color::Orange << "l" << Color::Yellow << "u" << Color::Green << "g" << Color::SkyBlue << "i" << Color::Purple << "n " << Color::Red << "r" << Color::Orange << "e" << Color::Yellow << "a" << Color::Green << "d" << Color::SkyBlue << "y" << Color::Purple << "!");
         menu->Run();
         delete menu;
         return (0);
