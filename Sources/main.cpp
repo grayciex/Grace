@@ -7,6 +7,7 @@
 
 namespace CTRPluginFramework
 {
+    PluginMenu *menu = nullptr;
     const int version_major = 0;
     const int version_minor = 0;
     const int version_revision = 0;
@@ -72,13 +73,34 @@ exit:
     void CommonMenu(PluginMenu &menu) {
         menu += new MenuFolder("Analyze", "", {
             new MenuEntry("Memory Viewer", MemoryViewer, MemoryViewer_Menu),
+            new MenuEntry("HudMenu", HudMenu),
         });
     }
 
+	void FrameCallback(Time _time)
+	{
+  		const Screen topScreen = OSD::GetTopScreen();
+        time_t unixTime = time(NULL);
+        struct tm* timeStruct = gmtime((const time_t *)&unixTime);
+		int year = timeStruct->tm_year + 1900;
+		int month = timeStruct->tm_mon + 1;
+		int day = timeStruct->tm_mday;
+		int hour = timeStruct->tm_hour;
+		int minute = timeStruct->tm_min;
+		int second = timeStruct->tm_sec;
+		const char *wday[] = {"日曜日","月曜日","火曜日","水曜日","木曜日","金曜日","土曜日"};
+
+		std::string timeinfo = Utils::Format("%d/%02d/%02d(%s)    %02d:%02d:%02d", year, month, day, wday[timeStruct->tm_wday], hour, minute, second);
+		topScreen.DrawRect(30, 0, 340, 20, Color::Black, true);
+		topScreen.DrawRect(32, 2, 336, 16, Color::White, false);
+		topScreen.DrawSysfont(timeinfo, 34, 4, Color::White);
+	}
+
     int main(void)
     {
-        PluginMenu *menu = new PluginMenu("Grace", version_major, version_minor, version_revision, about);
+        menu = new PluginMenu("Grace", version_major, version_minor, version_revision, about);
         menu->SynchronizeWithFrame(true);
+        menu->OnNewFrame = FrameCallback;
         menu->ShowWelcomeMessage(false);
         switch (Process::GetTitleID()) {
             case 0x0004000000155100:
