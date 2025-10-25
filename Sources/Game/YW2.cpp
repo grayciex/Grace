@@ -305,20 +305,13 @@ namespace CTRPluginFramework {
     }
 
     void YW2::WallThrough(MenuEntry *entry) {
-        bool isEnable;
-		if (Controller::IsKeysPressed(entry->Hotkeys[0].GetKeys())) {
-			if (isEnable) {
-				isEnable = false;
-				OSD::Notify("Wall Through: Disable");
-				Process::Write32(0x00267F68, 0xE3A01000);
-				Process::Write32(0x00267F6C, 0xE59D0170);
-			} else {
-				isEnable = true;
-				OSD::Notify("Wall Through: Enabled");
-				Process::Write32(0x00267F68, 0xE3A01001);
-				Process::Write32(0x00267F6C, 0xE59D0174);
-			}
-		}
+        if (entry->IsActivated()) {
+            Process::Write32(0x00267F68, 0xE3A01001);
+            Process::Write32(0x00267F6C, 0xE59D0174);
+        } else {
+            Process::Write32(0x00267F68, 0xE3A01000);
+            Process::Write32(0x00267F6C, 0xE59D0170);
+        }
     }
 
     void YW2::WalkInFloating(MenuEntry *entry) {
