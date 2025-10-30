@@ -3,11 +3,9 @@
 
 #include "main.hpp"
 
-#include <vector>
-
 namespace CTRPluginFramework
 {
-    PluginMenu *menu = nullptr;
+    const PluginMenu *menu = nullptr;
     const int version_major = 0;
     const int version_minor = 0;
     const int version_revision = 0;
@@ -73,6 +71,7 @@ exit:
     void CommonMenu(PluginMenu &menu) {
         menu += new MenuFolder("Analyze", "", {
             new MenuEntry("Memory Viewer", MemoryViewer, MemoryViewer_Menu),
+            new MenuEntry("Replace", nullptr, Replace4Byte),
             new MenuEntry("HudMenu", HudMenu),
         });
     }
